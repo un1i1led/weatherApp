@@ -11,5 +11,8 @@
         "sourceType": "module"
     },
     "rules": {
+        "no-restricted-globals": "off",
+        "no-console": "off",
+        "eqeqeq": "off"
     }
 }
