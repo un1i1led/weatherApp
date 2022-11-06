@@ -1,5 +1,22 @@
 body {
-    height: 100vh;
     background-color: gray;
     margin: 0;
+}
+
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bottom-side {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
 }

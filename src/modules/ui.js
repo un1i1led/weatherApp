@@ -36,35 +36,50 @@ const populateBottom = (div, city) => {
 
   const feelsLikeDiv = document.createElement('div');
   feelsLikeDiv.className = 'feels-like-div';
+  const feelsLikeHead = document.createElement('p');
+  feelsLikeHead.innerHTML = 'Feels like';
   const feelsLikeP = document.createElement('p');
   feelsLikeP.innerHTML = `${city.toCelsius(city.feels)}`;
 
   const humidityDiv = document.createElement('div');
   humidityDiv.className = 'humidity-div';
+  const humidityHead = document.createElement('p');
+  humidityHead.innerHTML = 'Humidity';
   const humidityP = document.createElement('p');
   humidityP.innerHTML = `${city.humidity}%`;
 
   const minDiv = document.createElement('div');
   minDiv.className = 'min-div';
+  const minHead = document.createElement('p');
+  minHead.innerHTML = 'Min temp';
   const minP = document.createElement('p');
   minP.innerHTML = `${city.toCelsius(city.min)}`;
 
   const maxDiv = document.createElement('div');
   maxDiv.className = 'max-div';
+  const maxHead = document.createElement('p');
+  maxHead.innerHTML = 'Max temp';
   const maxP = document.createElement('p');
   maxP.innerHTML = `${city.toCelsius(city.max)}`;
 
   const windDiv = document.createElement('div');
   windDiv.className = 'wind-div';
+  const windHead = document.createElement('p');
+  windHead.innerHTML = 'Wind';
   const windP = document.createElement('p');
   windP.innerHTML = `${city.wind} m/s`;
 
-  feelsLikeDiv.appendChild(feelsLikeP);
-  humidityDiv.appendChild(humidityP);
-  minDiv.appendChild(minP);
-  maxDiv.appendChild(maxP);
-  windDiv.appendChild(windP);
+  feelsLikeDiv.append(feelsLikeHead, feelsLikeP);
+  humidityDiv.append(humidityHead, humidityP);
+  minDiv.append(minHead, minP);
+  maxDiv.append(maxHead, maxP);
+  windDiv.append(windHead, windP);
   const divs = [feelsLikeDiv, humidityDiv, minDiv, maxDiv, windDiv];
+  const headP = [feelsLikeHead, humidityHead, minHead, maxHead, windHead];
+
+  for (const x of headP) {
+    x.className = 'head-p';
+  }
 
   for (const e of divs) {
     div.appendChild(e);
