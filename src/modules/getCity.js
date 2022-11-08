@@ -4,6 +4,14 @@ async function getWeather(lat, lon) {
   return data;
 }
 
+async function loadImage(data) {
+  const icon = new Image();
+  icon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+  console.log(data.weather[0].icon);
+  await icon.decode();
+  return icon;
+}
+
 const checkCityValid = (response, location) => {
   if (location.length == response[0].name.length) {
     return getWeather(response[0].lat, response[0].lon);
@@ -18,4 +26,7 @@ async function makeCall(location) {
   return stuff;
 }
 
-export default makeCall;
+export {
+  makeCall,
+  loadImage,
+};

@@ -19,14 +19,17 @@ const populateLeft = (div, city) => {
   div.appendChild(tempDiv);
 };
 
-const populateRight = (div, city) => {
+const populateRight = (div, city, icon) => {
+  const imgDiv = document.createElement('div');
+
   const descDiv = document.createElement('div');
   descDiv.className = 'desc-div';
 
   const descP = document.createElement('p');
   descP.innerHTML = `${city.description}`;
 
-  descDiv.appendChild(descP);
+  imgDiv.appendChild(icon);
+  descDiv.append(imgDiv, descP);
   div.appendChild(descDiv);
 };
 
@@ -86,7 +89,7 @@ const populateBottom = (div, city) => {
   }
 };
 
-const createDiv = (city) => {
+async function createDiv(city, icon) {
   main.removeChild(mainSearch);
   const mainDiv = document.createElement('div');
   mainDiv.className = 'main-location';
@@ -102,7 +105,7 @@ const createDiv = (city) => {
   bottomSide.className = 'bottom-side';
 
   populateLeft(leftSide, city);
-  populateRight(rightSide, city);
+  populateRight(rightSide, city, icon);
   populateBottom(bottomSide, city);
 
   topSide.appendChild(leftSide);
@@ -110,9 +113,10 @@ const createDiv = (city) => {
   mainDiv.appendChild(topSide);
   mainDiv.appendChild(bottomSide);
   main.appendChild(mainDiv);
-};
+}
 
-const initUI = (response) => {
+const initUI = (response, icon) => {
+  console.log(response);
   const cityObj = city(
     response.name,
     response.main.temp,
@@ -123,8 +127,9 @@ const initUI = (response) => {
     response.main.temp_max,
     response.wind.speed,
     response.sys.country,
+    response.weather[0].icon,
   );
-  createDiv(cityObj);
+  createDiv(cityObj, icon);
 };
 
 export default initUI;
