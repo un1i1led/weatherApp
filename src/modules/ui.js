@@ -127,7 +127,6 @@ const initUI = (response, icon) => {
     response.main.temp_max,
     response.wind.speed,
     response.sys.country,
-    response.weather[0].icon,
   );
   createDiv(cityObj, icon);
 };
