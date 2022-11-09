@@ -6,7 +6,8 @@ async function loadImage(data) {
 }
 
 const checkCityValid = (response, location) => {
-  const newName = response.name.toLowerCase();
+  const normalized = response.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const newName = normalized.toLowerCase();
   const newLocation = location.replace('+', ' ').toLowerCase();
   if (newName == newLocation) {
     return true;
@@ -15,7 +16,7 @@ const checkCityValid = (response, location) => {
 };
 
 async function makeCall(location) {
-  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d8d4bc4545de4700adce2ef463767cc7`);
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d8d4bc4545de4700adce2ef463767cc7&units=metric`);
   const data = await response.json();
   const stuff = checkCityValid(data, location);
   if (stuff) {
