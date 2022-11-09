@@ -5,13 +5,18 @@ import initUI from './modules/ui';
 const btn = document.querySelector('#btn-search');
 const input = document.querySelector('#search');
 
+const checkSpaces = (string) => string.replace(' ', '+');
+
 const getLocation = () => {
-  const locationValue = document.querySelector('#search').value;
+  let locationValue = document.querySelector('#search').value;
+  locationValue = (checkSpaces(locationValue));
+  console.log(locationValue);
   return locationValue;
 };
 
 async function location() {
   const call = await makeCall(getLocation());
+  console.log(call);
   const loadIcon = await loadImage(call);
   initUI(call, loadIcon);
 }
