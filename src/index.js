@@ -10,13 +10,11 @@ const checkSpaces = (string) => string.replace(' ', '+');
 const getLocation = () => {
   let locationValue = document.querySelector('#search').value;
   locationValue = (checkSpaces(locationValue));
-  console.log(locationValue);
   return locationValue;
 };
 
 async function location() {
   const call = await makeCall(getLocation());
-  console.log(call);
   const loadIcon = await loadImage(call);
   initUI(call, loadIcon);
 }

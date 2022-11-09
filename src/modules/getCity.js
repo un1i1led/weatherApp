@@ -1,8 +1,6 @@
 async function loadImage(data) {
   const icon = new Image();
-  console.log(data.weather[0].icon);
   icon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-  console.log(data.weather[0].icon);
   await icon.decode();
   return icon;
 }
@@ -10,7 +8,6 @@ async function loadImage(data) {
 const checkCityValid = (response, location) => {
   const newName = response.name.toLowerCase();
   const newLocation = location.replace('+', ' ').toLowerCase();
-  console.log(newLocation);
   if (newName == newLocation) {
     return true;
   }

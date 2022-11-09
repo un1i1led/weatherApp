@@ -116,7 +116,6 @@ async function createDiv(city, icon) {
 }
 
 const initUI = (response, icon) => {
-  console.log(response);
   const cityObj = city(
     response.name,
     response.main.temp,
