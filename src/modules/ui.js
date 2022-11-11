@@ -1,6 +1,5 @@
 import city from './city';
 
-const body = document.getElementsByTagName('body')[0];
 const main = document.querySelector('.main');
 const mainSearch = document.querySelector('.search');
 
@@ -9,9 +8,11 @@ const populateLeft = (div, city) => {
   tempDiv.className = 'temp-div';
 
   const tempP = document.createElement('p');
-  tempP.innerHTML = `${city.toCelsius(city.temp)}`;
+  tempP.className = 'temp-p';
+  tempP.innerHTML = `${city.toCelsius(city.temp)} ${city.unit}°`;
 
   const nameP = document.createElement('p');
+  nameP.className = 'name-p';
   nameP.innerHTML = `${city.name}, ${city.country}`;
 
   tempDiv.appendChild(tempP);
@@ -21,12 +22,16 @@ const populateLeft = (div, city) => {
 
 const populateRight = (div, city, icon) => {
   const imgDiv = document.createElement('div');
+  imgDiv.className = 'img-div';
 
   const descDiv = document.createElement('div');
   descDiv.className = 'desc-div';
 
   const descP = document.createElement('p');
-  descP.innerHTML = `${city.description}`;
+  descP.className = 'desc-p';
+  const descCap = city.description.charAt(0).toUpperCase()
+  + city.description.slice(1);
+  descP.innerHTML = `${descCap}`;
 
   imgDiv.appendChild(icon);
   descDiv.append(imgDiv, descP);
@@ -42,7 +47,7 @@ const populateBottom = (div, city) => {
   const feelsLikeHead = document.createElement('p');
   feelsLikeHead.innerHTML = 'Feels like';
   const feelsLikeP = document.createElement('p');
-  feelsLikeP.innerHTML = `${city.toCelsius(city.feels)}`;
+  feelsLikeP.innerHTML = `${city.toCelsius(city.feels)} ${city.unit}°`;
 
   const humidityDiv = document.createElement('div');
   humidityDiv.className = 'humidity-div';
@@ -56,14 +61,14 @@ const populateBottom = (div, city) => {
   const minHead = document.createElement('p');
   minHead.innerHTML = 'Min temp';
   const minP = document.createElement('p');
-  minP.innerHTML = `${city.toCelsius(city.min)}`;
+  minP.innerHTML = `${city.toCelsius(city.min)} ${city.unit}°`;
 
   const maxDiv = document.createElement('div');
   maxDiv.className = 'max-div';
   const maxHead = document.createElement('p');
   maxHead.innerHTML = 'Max temp';
   const maxP = document.createElement('p');
-  maxP.innerHTML = `${city.toCelsius(city.max)}`;
+  maxP.innerHTML = `${city.toCelsius(city.max)} ${city.unit}°`;
 
   const windDiv = document.createElement('div');
   windDiv.className = 'wind-div';
@@ -79,9 +84,14 @@ const populateBottom = (div, city) => {
   windDiv.append(windHead, windP);
   const divs = [feelsLikeDiv, humidityDiv, minDiv, maxDiv, windDiv];
   const headP = [feelsLikeHead, humidityHead, minHead, maxHead, windHead];
+  const p = [feelsLikeP, humidityP, minP, maxP, windP];
 
   for (const x of headP) {
     x.className = 'head-p';
+  }
+
+  for (const i of p) {
+    i.className = 'bottom-p';
   }
 
   for (const e of divs) {
@@ -126,6 +136,7 @@ const initUI = (response, icon) => {
     response.main.temp_max,
     response.wind.speed,
     response.sys.country,
+    'C',
   );
   createDiv(cityObj, icon);
 };
