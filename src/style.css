@@ -1,6 +1,14 @@
 body {
-    background-color: gray;
+    background-color: #c8c8c8;
     margin: 0;
+}
+
+.main-location {
+    background-color: #dfdfdf;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    position: relative;
 }
 
 .main {
@@ -19,4 +27,63 @@ body {
     display: flex;
     justify-content: space-around;
     gap: 15px;
+}
+
+.left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+}
+
+.temp-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.temp-p {
+    font-size: 32px;
+    margin: 0;
+}
+
+.img-div {
+    position: absolute;
+    top: -25px;
+    left: 50px;
+}
+
+.desc-div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.name-p {
+    margin: 0;
+}
+
+.desc-p {
+    position: absolute;
+    top: 45px;
+    margin: 0;
+}
+
+.head-p {
+    margin: 0;
+    margin-top: 40px;
+}
+
+.bottom-p {
+    margin: 0;
+}
+
+.back-icon {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
 }
