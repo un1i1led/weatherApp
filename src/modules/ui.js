@@ -131,19 +131,23 @@ async function createDiv(city, icon, backIcon) {
   const mainDiv = document.createElement('div');
   mainDiv.className = 'main-location';
 
-  mainDiv.addEventListener('click', () => {
-    changeTempUnit(city);
-    if (city.unit == 'C') {
-      city.unit = 'F';
-    } else {
-      city.unit = 'C';
-    }
-  });
-
   const topSide = document.createElement('div');
   const leftSide = document.createElement('div');
   const rightSide = document.createElement('div');
   const bottomSide = document.createElement('div');
+
+  const sides = [topSide, bottomSide];
+
+  sides.forEach((elem) => {
+    elem.addEventListener('click', () => {
+      changeTempUnit(city);
+      if (city.unit == 'C') {
+        city.unit = 'F';
+      } else {
+        city.unit = 'C';
+      }
+    });
+  });
 
   topSide.className = 'top-side';
   leftSide.className = 'left-side';
