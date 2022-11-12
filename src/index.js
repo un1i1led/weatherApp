@@ -1,5 +1,5 @@
 import './style.css';
-import { makeCall, loadImage } from './modules/getCity';
+import { makeCall, loadImage, loadBackIcon } from './modules/getCity';
 import initUI from './modules/ui';
 
 const btn = document.querySelector('#btn-search');
@@ -16,7 +16,8 @@ const getLocation = () => {
 async function location() {
   const call = await makeCall(getLocation());
   const loadIcon = await loadImage(call);
-  initUI(call, loadIcon);
+  const backIcon = await loadBackIcon();
+  initUI(call, loadIcon, backIcon);
 }
 
 btn.addEventListener('click', () => {

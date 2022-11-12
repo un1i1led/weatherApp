@@ -1,8 +1,18 @@
+import back from '../img/back1.png';
+
 async function loadImage(data) {
   const icon = new Image();
   icon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
   await icon.decode();
   return icon;
+}
+
+async function loadBackIcon() {
+  const backIcon = new Image();
+  backIcon.src = back;
+  backIcon.className = 'back-icon';
+  await backIcon.decode();
+  return backIcon;
 }
 
 const checkCityValid = (response, location) => {
@@ -28,4 +38,5 @@ async function makeCall(location) {
 export {
   makeCall,
   loadImage,
+  loadBackIcon,
 };
