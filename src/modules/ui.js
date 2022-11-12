@@ -47,6 +47,7 @@ const populateBottom = (div, city) => {
   const feelsLikeHead = document.createElement('p');
   feelsLikeHead.innerHTML = 'Feels like';
   const feelsLikeP = document.createElement('p');
+  feelsLikeP.id = 'feels-like-p';
   feelsLikeP.innerHTML = `${city.toCelsius(city.feels)} ${city.unit}°`;
 
   const humidityDiv = document.createElement('div');
@@ -61,6 +62,7 @@ const populateBottom = (div, city) => {
   const minHead = document.createElement('p');
   minHead.innerHTML = 'Min temp';
   const minP = document.createElement('p');
+  minP.id = 'min-p';
   minP.innerHTML = `${city.toCelsius(city.min)} ${city.unit}°`;
 
   const maxDiv = document.createElement('div');
@@ -68,6 +70,7 @@ const populateBottom = (div, city) => {
   const maxHead = document.createElement('p');
   maxHead.innerHTML = 'Max temp';
   const maxP = document.createElement('p');
+  maxP.id = 'max-p';
   maxP.innerHTML = `${city.toCelsius(city.max)} ${city.unit}°`;
 
   const windDiv = document.createElement('div');
@@ -104,10 +107,38 @@ const reAddSearchBar = (mainDiv) => {
   main.appendChild(mainSearch);
 };
 
+const changeTempUnit = (city) => {
+  const tempP = document.querySelector('.temp-p');
+  const feelsLikeP = document.querySelector('#feels-like-p');
+  const minP = document.querySelector('#min-p');
+  const maxP = document.querySelector('#max-p');
+
+  if (city.unit == 'C') {
+    tempP.innerHTML = `${city.toFahr(city.temp)} F°`;
+    feelsLikeP.innerHTML = `${city.toFahr(city.feels)} F°`;
+    minP.innerHTML = `${city.toFahr(city.min)} F°`;
+    maxP.innerHTML = `${city.toFahr(city.max)} F°`;
+  } else {
+    tempP.innerHTML = `${city.toCelsius(city.temp)} C°`;
+    feelsLikeP.innerHTML = `${city.toCelsius(city.feels)} C°`;
+    minP.innerHTML = `${city.toCelsius(city.min)} C°`;
+    maxP.innerHTML = `${city.toCelsius(city.max)} C°`;
+  }
+};
+
 async function createDiv(city, icon, backIcon) {
   main.removeChild(mainSearch);
   const mainDiv = document.createElement('div');
   mainDiv.className = 'main-location';
+
+  mainDiv.addEventListener('click', () => {
+    changeTempUnit(city);
+    if (city.unit == 'C') {
+      city.unit = 'F';
+    } else {
+      city.unit = 'C';
+    }
+  });
 
   const topSide = document.createElement('div');
   const leftSide = document.createElement('div');
