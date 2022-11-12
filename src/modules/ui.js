@@ -99,7 +99,12 @@ const populateBottom = (div, city) => {
   }
 };
 
-async function createDiv(city, icon) {
+const reAddSearchBar = (mainDiv) => {
+  main.removeChild(mainDiv);
+  main.appendChild(mainSearch);
+};
+
+async function createDiv(city, icon, backIcon) {
   main.removeChild(mainSearch);
   const mainDiv = document.createElement('div');
   mainDiv.className = 'main-location';
@@ -118,14 +123,19 @@ async function createDiv(city, icon) {
   populateRight(rightSide, city, icon);
   populateBottom(bottomSide, city);
 
+  backIcon.addEventListener('click', () => {
+    reAddSearchBar(mainDiv);
+  });
+
   topSide.appendChild(leftSide);
   topSide.appendChild(rightSide);
   mainDiv.appendChild(topSide);
   mainDiv.appendChild(bottomSide);
+  mainDiv.appendChild(backIcon);
   main.appendChild(mainDiv);
 }
 
-const initUI = (response, icon) => {
+const initUI = (response, icon, backIcon) => {
   const cityObj = city(
     response.name,
     response.main.temp,
@@ -138,7 +148,7 @@ const initUI = (response, icon) => {
     response.sys.country,
     'C',
   );
-  createDiv(cityObj, icon);
+  createDiv(cityObj, icon, backIcon);
 };
 
 export default initUI;

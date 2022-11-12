@@ -17,6 +17,7 @@ async function location() {
   const call = await makeCall(getLocation());
   const loadIcon = await loadImage(call);
   const backIcon = await loadBackIcon();
+  input.value = '';
   initUI(call, loadIcon, backIcon);
 }
 
