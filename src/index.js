@@ -2,7 +2,7 @@ import './style.css';
 import { makeCall, loadImage, loadBackIcon } from './modules/getCity';
 import initUI from './modules/ui';
 
-const btn = document.querySelector('#btn-search');
+const btn = document.querySelector('.search-btn');
 const input = document.querySelector('#search');
 
 const checkSpaces = (string) => string.replace(' ', '+');

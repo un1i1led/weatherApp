@@ -87,3 +87,26 @@ body {
     width: 30px;
     cursor: pointer;
 }
+
+form {
+    display: flex;
+    gap: 10px;
+}
+
+.search {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.search-btn {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    opacity: 85%;
+    transition: 0.5s;
+}
+
+.search-btn:hover {
+    opacity: 100%;
+}
