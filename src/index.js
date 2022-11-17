@@ -1,6 +1,6 @@
 import './style.css';
 import { makeCall, loadImage, loadBackIcon } from './modules/getCity';
-import initUI from './modules/ui';
+import { initUI, notFound } from './modules/ui';
 
 const btn = document.querySelector('.search-btn');
 const input = document.querySelector('#search-input');
@@ -15,10 +15,13 @@ const getLocation = () => {
 
 async function location() {
   const call = await makeCall(getLocation());
-  const loadIcon = await loadImage(call);
-  const backIcon = await loadBackIcon();
-  input.value = '';
-  initUI(call, loadIcon, backIcon);
+  if (call != 'Not a valid city') {
+    const loadIcon = await loadImage(call);
+    const backIcon = await loadBackIcon();
+    input.value = '';
+    initUI(call, loadIcon, backIcon);
+  }
+  notFound();
 }
 
 document.getElementById('form').addEventListener('keypress', (e) => {

@@ -126,6 +126,13 @@ const changeTempUnit = (city) => {
   }
 };
 
+const removeNotFound = () => {
+  const searchDiv = document.querySelector('.search');
+  const notFoundP = document.querySelector('.not-found');
+
+  searchDiv.removeChild(notFoundP);
+};
+
 async function createDiv(city, icon, backIcon) {
   main.removeChild(mainSearch);
   const mainDiv = document.createElement('div');
@@ -160,6 +167,7 @@ async function createDiv(city, icon, backIcon) {
 
   backIcon.addEventListener('click', () => {
     reAddSearchBar(mainDiv);
+    removeNotFound();
   });
 
   topSide.appendChild(leftSide);
@@ -169,6 +177,16 @@ async function createDiv(city, icon, backIcon) {
   mainDiv.appendChild(backIcon);
   main.appendChild(mainDiv);
 }
+
+const notFound = () => {
+  const searchDiv = document.querySelector('.search');
+  const notFoundP = document.createElement('p');
+
+  notFoundP.innerHTML = 'Location not found';
+  notFoundP.className = 'not-found';
+
+  searchDiv.appendChild(notFoundP);
+};
 
 const initUI = (response, icon, backIcon) => {
   const cityObj = city(
@@ -186,4 +204,7 @@ const initUI = (response, icon, backIcon) => {
   createDiv(cityObj, icon, backIcon);
 };
 
-export default initUI;
+export {
+  initUI,
+  notFound,
+};

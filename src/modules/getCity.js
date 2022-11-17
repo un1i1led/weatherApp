@@ -16,6 +16,10 @@ async function loadBackIcon() {
 }
 
 const checkCityValid = (response, location) => {
+  if (response.name == undefined) {
+    return 0;
+  }
+
   const normalized = response.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const newName = normalized.toLowerCase();
   const newLocation = location.replace('+', ' ').toLowerCase();
