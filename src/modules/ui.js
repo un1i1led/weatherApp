@@ -185,7 +185,12 @@ const notFound = () => {
   notFoundP.innerHTML = 'Location not found';
   notFoundP.className = 'not-found';
 
-  searchDiv.appendChild(notFoundP);
+  try {
+    searchDiv.appendChild(notFoundP);
+  } catch (e) {
+    return 0;
+  }
+  return 1;
 };
 
 const initUI = (response, icon, backIcon) => {
