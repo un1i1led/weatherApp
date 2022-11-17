@@ -125,3 +125,7 @@ form {
     width: 30vw;
     font-size: 20px;
 }
+
+.top-side, .bottom-side {
+    cursor: pointer;
+}
